@@ -1,7 +1,7 @@
 version: 0.0.{build}
 image:
   - Visual Studio 2019
-configuration: Debug With Project References
+configuration: Release
 skip_commits:
   message: /.*\[ci\-skip\].*/ 
 before_build:
@@ -20,7 +20,7 @@ for:
     after_test:
       - netsh advfirewall set  currentprofile state on
 test_script:
-- dotnet test Vlingo.Platform.sln
+- dotnet test vlingo-net-directory/src/Vlingo.Directory.sln
 notifications:
   - provider: Webhook
     url: https://webhooks.gitter.im/e/2b56d1ca84637acb9ee8
