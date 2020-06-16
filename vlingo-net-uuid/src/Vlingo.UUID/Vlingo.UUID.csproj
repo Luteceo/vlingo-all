@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+
+    <!-- NuGet Metadata -->
+    <IsPackable>true</IsPackable>
+    <PackageVersion>$(VlingoVersion)</PackageVersion>
+    <PackageId>Vlingo.UUID</PackageId>
+    <Authors>Vlingo</Authors>
+    <Description>
+      .NET implementation of UUID generation according to RFC4122 spec
+    </Description>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/vlingo-net/vlingo-net-uuid</PackageProjectUrl>
+    <PackageIcon>vlingo-64x64.png</PackageIcon>
+    <RepositoryUrl>https://github.com/vlingo-net/vlingo-net-uuid</RepositoryUrl>
+    <Configurations>Debug;Release;Debug With Project References</Configurations>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\vlingo-64x64.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
+</Project>
