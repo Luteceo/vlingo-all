@@ -1,10 +1,7 @@
 version: 0.0.{build}
 image:
   - Visual Studio 2019
-matrix:
-  allow_failures:
-    - image: Visual Studio 2019
-configuration: Release
+configuration: Debug With Project References
 skip_commits:
   message: /.*\[ci\-skip\].*/ 
 before_build:
@@ -12,7 +9,7 @@ before_build:
 build:
   project: Vlingo.Platform.sln
   verbosity: minimal
-  publish_nuget: true
+  publish_nuget: false
 test_script:
 - dotnet test Vlingo.Platform.sln
 notifications:
@@ -22,19 +19,3 @@ notifications:
     on_build_success: true
     on_build_failure: true
     on_build_status_changed: true
-clone_script:
-- pwsh: >-
-    if(-not $env:APPVEYOR_PULL_REQUEST_NUMBER) {
-      git clone -q --branch=$env:APPVEYOR_REPO_BRANCH https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
-      cd $env:APPVEYOR_BUILD_FOLDER
-      git checkout -qf $env:APPVEYOR_REPO_COMMIT
-    } else {
-      git clone -q https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
-      cd $env:APPVEYOR_BUILD_FOLDER
-      git fetch -q origin +refs/pull/$env:APPVEYOR_PULL_REQUEST_NUMBER/merge:
-      git checkout -qf FETCH_HEAD
-    }
-    if( $isLinux ) {
-      sudo ln -s /usr/local/share/dotnet/dotnet /usr/local/bin/
-    }
-- pwsh: git submodule update --init --recursive
