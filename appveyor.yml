@@ -4,7 +4,7 @@ image:
   - Ubuntu
   - macos
   - macos-mojave
-configuration: Debug With Project References
+configuration: "Debug With Project References"
 skip_commits:
   message: /.*\[ci\-skip\].*/ 
 before_build:
