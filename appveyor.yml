@@ -10,6 +10,15 @@ build:
   project: Vlingo.Platform.sln
   verbosity: minimal
   publish_nuget: false
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2019
+    before_test:
+      - netsh advfirewall set currentprofile state off
+    after_test:
+      - netsh advfirewall set  currentprofile state on
 test_script:
 - dotnet test Vlingo.Platform.sln
 notifications:
