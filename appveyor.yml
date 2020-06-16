@@ -1,6 +1,9 @@
 version: 0.0.{build}
 image:
   - Visual Studio 2019
+  - Ubuntu
+  - macos
+  - macos-mojave
 configuration: Release
 skip_commits:
   message: /.*\[ci\-skip\].*/ 
@@ -11,6 +14,27 @@ build:
   verbosity: minimal
   publish_nuget: false
 for:
+  -
+    matrix:
+      only:
+        - image: Ubuntu
+    before_test:
+      - sudo ufw disable
+    after_test:
+      - sudo ufw enable
+  -
+    matrix:
+      only:
+        - image: macOS
+        - image: macOS-Mojave
+    before_test:
+      - sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 0
+      - sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+      - sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+    after_test:
+      - sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+      - sudo launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+      - sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
   -
     matrix:
       only:
