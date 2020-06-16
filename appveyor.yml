@@ -4,13 +4,13 @@ image:
   - Ubuntu
   - macos
   - macos-mojave
-configuration: Release
+configuration: Debug With Project References
 skip_commits:
   message: /.*\[ci\-skip\].*/ 
 before_build:
-- dotnet restore vlingo-net-directory/src/Vlingo.Directory.sln
+- dotnet restore Vlingo.Platform.sln
 build:
-  project: vlingo-net-directory/src/Vlingo.Directory.sln
+  project: Vlingo.Platform.sln
   verbosity: minimal
   publish_nuget: false
 for:
