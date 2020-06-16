@@ -5,9 +5,9 @@ configuration: Release
 skip_commits:
   message: /.*\[ci\-skip\].*/ 
 before_build:
-- dotnet restore Vlingo.Platform.sln
+- dotnet restore vlingo-net-directory/src/Vlingo.Directory.sln
 build:
-  project: Vlingo.Platform.sln
+  project: vlingo-net-directory/src/Vlingo.Directory.sln
   verbosity: minimal
   publish_nuget: false
 for:
